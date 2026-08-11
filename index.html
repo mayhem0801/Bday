@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Happy Birthday Amy 💗</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Trebuchet MS", sans-serif;
+      background: #fff6fa;
+      color: #634957;
+      overflow-x: hidden;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    /* =========================
+       FLOATING HEARTS
+    ========================= */
+
+    #hearts {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 50;
+    }
+
+    .heart {
+      position: absolute;
+      bottom: -50px;
+      animation: floatUp linear forwards;
+      opacity: 0.75;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+
+      15% {
+        opacity: 0.8;
+      }
+
+      100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    /* =========================
+       LANDING PAGE
+    ========================= */
+
+    #landing {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 25px;
+
+      background:
+        radial-gradient(circle at 10% 10%, #ffd8e8, transparent 32%),
+        radial-gradient(circle at 90% 85%, #e5d9ff, transparent 32%),
+        #fff6fa;
+
+      position: relative;
+      overflow: hidden;
+    }
+
+    .landing-content {
+      max-width: 750px;
+      z-index: 2;
+      animation: fadeUp 1.5s ease;
+    }
+
+    .tiny-heading {
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: 0.85rem;
+      color: #b26c91;
+      margin-bottom: 22px;
+    }
+
+    .birthday-title {
+      font-family: Georgia, serif;
+      color: #c96e9d;
+      font-size: clamp(3.5rem, 10vw, 7rem);
+      line-height: 0.95;
+      margin-bottom: 25px;
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    .landing-text {
+      font-size: 1.2rem;
+      line-height: 1.7;
+      color: #75586a;
+      margin-bottom: 35px;
+    }
+
+    .main-button {
+      border: none;
+      padding: 17px 34px;
+      border-radius: 50px;
+      background: linear-gradient(135deg, #df8db5, #b88add);
+      color: white;
+      font-size: 1.05rem;
+      cursor: pointer;
+      box-shadow: 0 12px 30px rgba(180, 105, 155, 0.25);
+      transition: 0.3s;
+    }
+
+    .main-button:hover {
+      transform: translateY(-4px) scale(1.03);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(35px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.035);
+      }
+    }
+
+    /* =========================
+       MAIN WEBSITE
+    ========================= */
+
+    #main {
+      display: none;
+    }
+
+    .hero {
+      min-height: 70vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 60px 20px;
+
+      background:
+        radial-gradient(circle at 10% 20%, #ffdbe9, transparent 30%),
+        radial-gradient(circle at 90% 80%, #e8dcff, transparent 30%);
+    }
+
+    .hero-inner {
+      max-width: 750px;
+    }
+
+    .hero h1 {
+      font-family: Georgia, serif;
+      color: #c96e9d;
+      font-size: clamp(3rem, 8vw, 6rem);
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      line-height: 1.8;
+    }
+
+    /* =========================
+       GENERAL SECTIONS
+    ========================= */
+
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 85px 20px;
+    }
+
+    .section-title {
+      font-family: Georgia, serif;
+      text-align: center;
+      color: #c96e9d;
+      font-size: 2.7rem;
+      margin-bottom: 12px;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      color: #876b7a;
+      margin-bottom: 45px;
+      line-height: 1.6;
+    }
+
+    /* =========================
+       MEMORY CATEGORIES
+    ========================= */
+
+    .categories {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 35px;
+    }
+
+    .category-button {
+      border: 2px solid #efc7da;
+      background: white;
+      color: #a95f89;
+      padding: 16px 10px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .category-button:hover,
+    .category-button.active {
+      background: #f9dce9;
+      transform: translateY(-3px);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .photo-card {
+      background: white;
+      padding: 10px;
+      border-radius: 20px;
+      box-shadow: 0 10px 28px rgba(120, 70, 100, 0.12);
+      transition: 0.35s;
+    }
+
+    .photo-card:hover {
+      transform: translateY(-8px) rotate(-1deg);
+    }
+
+    .photo-card img {
+      width: 100%;
+      height: 280px;
+      object-fit: cover;
+      border-radius: 14px;
+      display: block;
+    }
+
+    .photo-caption {
+      text-align: center;
+      font-family: Georgia, serif;
+      color: #75586a;
+      padding: 16px 8px 10px;
+      line-height: 1.5;
+    }
+
+    /* =========================
+       MESSAGE CARDS
+    ========================= */
+
+    .messages {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
+
+    .message-card {
+      min-height: 190px;
+      border-radius: 25px;
+      padding: 25px;
+      background: linear-gradient(145deg, #ffffff, #fff0f6);
+      border: 1px solid #f2d5e3;
+      box-shadow: 0 10px 25px rgba(120, 70, 100, 0.1);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      transition: 0.35s;
+    }
+
+    .message-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .message-front {
+      font-family: Georgia, serif;
+      font-size: 1.45rem;
+      color: #c06b98;
+    }
+
+    .message-back {
+      display: none;
+      line-height: 1.7;
+      color: #765b6c;
+    }
+
+    .message-card.revealed .message-front {
+      display: none;
+    }
+
+    .message-card.revealed .message-back {
+      display: block;
+      animation: fadeUp 0.5s ease;
+    }
+
+    /* =========================
+       SECRET MESSAGE
+    ========================= */
+
+    .secret-box {
+      background: white;
+      border-radius: 35px;
+      text-align: center;
+      box-shadow: 0 12
