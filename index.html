@@ -6,6 +6,62 @@
 <title>Happy Birthday Amy 💗</title>
 
 <style>
+  .memory-buttons {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 15px;
+  max-width: 800px;
+  margin: 0 auto 35px;
+}
+
+.memory-buttons button {
+  border: 2px solid #efc7da;
+  background: white;
+  color: #a95f89;
+  padding: 18px;
+  border-radius: 20px;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.memory-buttons button:hover {
+  background: #f9dce9;
+  transform: translateY(-4px);
+}
+
+#memoryDisplay {
+  display: none;
+  max-width: 600px;
+  margin: auto;
+  background: white;
+  padding: 12px;
+  border-radius: 25px;
+  box-shadow: 0 12px 30px rgba(120,70,100,.15);
+  text-align: center;
+  animation: fadeUp .5s ease;
+}
+
+#memoryImage {
+  width: 100%;
+  max-height: 600px;
+  object-fit: cover;
+  border-radius: 18px;
+}
+
+#memoryCaption {
+  font-family: Georgia, serif;
+  color: #75586a;
+  padding: 18px 10px;
+  font-size: 1.15rem;
+  line-height: 1.5;
+}
+
+@media(max-width:600px) {
+  .memory-buttons {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 *{
   box-sizing:border-box;
   margin:0;
@@ -614,30 +670,54 @@ footer{
       from so many amazing ones :)
     </p>
 
-    <div class="categories">
+    <section>
 
-      <button class="category-button active"
-        onclick="filterGallery('all',this)">
-        prettier than nature✨
-      </button>
+  <h2 class="section-title">
+    Little Memories 📸
+  </h2>
 
-      <button class="category-button"
-        onclick="filterGallery('happy',this)">
-        Baddie/maal💗
-      </button>
+  <p class="section-subtitle">
+    Tap a button to reveal a memory 💗
+  </p>
 
-      <button class="category-button"
-        onclick="filterGallery('fun',this)">
-        coolest gurll🎀
-      </button>
+  <div class="memory-buttons">
 
-      <button class="category-button"
-        onclick="filterGallery('cute',this)">
-        CUTESYY BABYYY🌸
-      </button>
+    <button onclick="showMemory('memory1')">
+      💗 Baddie
+    </button>
 
-    </div>
+    <button onclick="showMemory('memory2')">
+      🎀 kindest of all
+    </button>
 
+    <button onclick="showMemory('memory3')">
+      ✨ prettier than nature
+    </button>
+
+    <button onclick="showMemory('memory4')">
+      🌸 cutesyy
+    </button>
+
+    <button onclick="showMemory('memory5')">
+      💕 BEAUTIFUL
+    </button>
+
+    <button onclick="showMemory('memory6')">
+      Desi Kudi 🌚🧿
+    </button>
+
+  </div>
+
+
+  <div id="memoryDisplay">
+
+    <img id="memoryImage" src="" alt="Memory">
+
+    <p id="memoryCaption"></p>
+
+  </div>
+
+    </section>
     <div class="gallery">
 
       <div class="photo-card" data-category="happy">
@@ -1056,6 +1136,57 @@ for(let i=0;i<8;i++){
   },i*300);
 
 }
+  function showMemory(memory) {
+
+  const image = document.getElementById("memoryImage");
+  const caption = document.getElementById("memoryCaption");
+  const display = document.getElementById("memoryDisplay");
+
+  const memories = {
+
+    memory1: {
+      image: "amy1.jpg",
+      caption: "A memory worth keeping forever 💗"
+    },
+
+    memory2: {
+      image: "amy2.jpg",
+      caption: "One of those moments we'll never forget 🎀"
+    },
+
+    memory3: {
+      image: "amy3.jpg",
+      caption: "This one deserves its own little place here ✨"
+    },
+
+    memory4: {
+      image: "amy4.jpg",
+      caption: "A beautiful moment from the past 🌸"
+    },
+
+    memory5: {
+      image: "amy5.jpg",
+      caption: "The kind of memory that makes you smile 💕"
+    },
+
+    memory6: {
+      image: "amy6.jpg",
+      caption: "And finally... another one for the memory book 🥳"
+    }
+
+  };
+
+  image.src = memories[memory].image;
+  caption.textContent = memories[memory].caption;
+
+  display.style.display = "block";
+
+  display.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+
+  }
 
 </script>
 
